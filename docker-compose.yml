@@ -32,6 +32,7 @@ services:
     volumes:
       - ./scripts:/app/scripts
       - ./sql:/app/sql
+      - ./data:/app/data
 
 networks:
   default: 
