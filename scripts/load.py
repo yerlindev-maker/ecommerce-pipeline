@@ -3,7 +3,7 @@ import json
 import os
 
 def load_to_staging(products):
-    conn = none
+    conn = None
     try:
         conn = psycopg2.connect(
         host=os.getenv('DB_HOST'),
@@ -40,4 +40,3 @@ def load_to_staging(products):
         if conn:
             cur.close()
             conn.close()
-            
