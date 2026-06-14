@@ -6,15 +6,15 @@ def load_to_staging(products):
     conn = None
     try:
         conn = psycopg2.connect(
-        host=os.getenv('DB_HOST'),
-        database=os.getenv('DB_NAME'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        port=os.getenv('DB_PORT')
+            host=os.getenv('DB_HOST'),
+            database=os.getenv('DB_NAME'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            port=os.getenv('DB_PORT')
     )
         cur = conn.cursor()
 
-        print("Limpiando tabla stagin.products") 
+        print("Limpiando tabla staging.products") 
         cur.execute("TRUNCATE TABLE staging.products")
 
         insert_query = """

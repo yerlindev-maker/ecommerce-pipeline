@@ -1,12 +1,17 @@
-import requests
-import os
-import psycopg2
-import json
+from dotenv import load_dotenv  
+from extract import fetch_products
+from load import load_to_staging
 
-# Configuración de la base de datos
-DB_HOST = os.getenv('DB_HOST', 'localhost')
-DB_NAME = os.getenv('DB_NAME')
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASSWORD')
-DB_PORT = os.getenv('DB_PORT', '5432')
+load_dotenv()
 
+def run_pipeline():
+    print("Iniciando Pipeline ELT")
+    try:
+        data = fetch_products()
+        load = load_to_staging(data)
+        print("Pipeline finalizado con éxito")
+    except Exception as e:
+        print(f'El pipeline falló: {e}')
+
+if __name__ == "__main__":
+    run_pipeline()
